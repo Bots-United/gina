@@ -1,0 +1,120 @@
+------------------------------------------------------------------------
+Most of the portions of the source code to this program is covered by
+the terms of GNU General Public License with a special exception, see
+COPYING for details.
+
+Copyright (c) 2004-2005, Wei Mingzhi <whistler_wmz@users.sf.net>
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 3 of the License, or (at
+your option) any later version.
+
+As a special exception, you have permission to link this program with
+the Half-Life 1, as long as you follow the requirements of the GNU GPL
+in regard to all of the software aside from HL1.
+
+------------------------------------------------------------------------
+This software is partically based on HPB bot by botman
+(http://www.planethalflife.com/botman) and
+POD-Bot by Count Floyd. (http://podbot.nuclearbox.com)
+
+------------------------------------------------------------------------
+This software is partically based on RACC by Pierre-Marie Baty.
+(http://racc.bots-united.com)
+
+Copyright (c) 2004, Pierre-Marie Baty
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+Neither the name of the RACC nor the names of its contributors may be used
+to endorse or promote products derived from this software without specific
+prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+------------------------------------------------------------------------
+This software uses interfacing code of Metamod Half-Life server-side MOD
+by Will Day (http://sourceforge.net/projects/metamod).
+
+/*
+ * Copyright (c) 2001-2003 Will Day <willday@hpgx.net>
+ *
+ *    This file is part of Metamod.
+ *
+ *    Metamod is free software; you can redistribute it and/or modify it
+ *    under the terms of the GNU General Public License as published by the
+ *    Free Software Foundation; either version 2 of the License, or (at
+ *    your option) any later version.
+ *
+ *    Metamod is distributed in the hope that it will be useful, but
+ *    WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with Metamod; if not, write to the Free Software Foundation,
+ *    Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ *    In addition, as a special exception, the author gives permission to
+ *    link the code of this program with the Half-Life Game Engine ("HL
+ *    Engine") and Modified Game Libraries ("MODs") developed by Valve,
+ *    L.L.C ("Valve").  You must obey the GNU General Public License in all
+ *    respects for all of the code used other than the HL Engine and MODs
+ *    from Valve.  If you modify this file, you may extend this exception
+ *    to your version of the file, but you are not obligated to do so.  If
+ *    you do not wish to do so, delete this exception statement from your
+ *    version.
+ *
+ */
+
+(See COPYING for the full version of GNU General Public License.)
+
+------------------------------------------------------------------------
+
+This software uses interfacing code of Half-Life 1 SDK by Valve Software.
+
+WARNING: Unlike all the licenses above, Valve's SDK License is a proprietary
+license. You may NOT use Valve SDK code in your non-HL programs without
+Valve's explicit permission.
+
+See hlsdk/eula.txt for details.
+
+/***
+*
+*   Copyright (c) 1999, Valve LLC. All rights reserved.
+*
+*   This product contains software technology licensed from Id 
+*   Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*   All Rights Reserved.
+*
+*   This source code contains proprietary and confidential information of
+*   Valve LLC and its suppliers.  Access to this code is restricted to
+*   persons who have executed a written SDK license with Valve.  Any access,
+*   use or distribution of this code by or to any unlicensed person is illegal.
+*
+****/
+
+Also note that the included HLSDK header files are NOT the original ones, they
+are heavily stripped; only required part to get the bot run in HL1 is included.
+
+------------------------------------------------------------------------

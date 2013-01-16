@@ -1,0 +1,39 @@
+
+[GENERAL_REPLIES]
+test1 reply 1
+test1 reply 2
+test1 reply 3
+test1 reply 4
+test1 reply 5
+test1 reply 6
+test1 reply 7
+test1 reply 8
+test1 reply 9
+test1 reply 10
+test1 reply 11
+test1 reply 12
+test1 random opponent %r
+test1 bot name %n
+test1 opponent in first place %f
+test1 opponent in last place %l
+test1 last victim %v
+test1 last player killed %k
+test1 map title %m
+
+[REPLIES]
+
+@KEY test1
+@KEY test2
+@KEY test3
+@KEY test4
+
+test random opponent %r
+test bot name %n
+test opponent in first place %f
+test opponent in last place %l
+test last victim %v
+test last player killed %k
+test map title %m
+test player to reply %s
+
+
