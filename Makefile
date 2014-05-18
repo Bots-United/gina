@@ -55,8 +55,8 @@ CCDEBUG = -ggdb3 -D_DEBUG=1
 
 INCLUDE = -I./hlsdk -I./metamod
 
-#CFLAGS = $(GAMEDEF) $(CCOPT)
-CFLAGS = $(GAMEDEF) $(CCDEBUG)
+CFLAGS = $(GAMEDEF) $(CCOPT)
+#CFLAGS = $(GAMEDEF) $(CCDEBUG)
 
 ifeq "$(OS)" "linux"
 
