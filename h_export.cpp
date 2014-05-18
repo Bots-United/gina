@@ -39,7 +39,7 @@
 
 #include "main.h"
 
-#ifndef __linux__
+#ifdef WINDOWSNT
 HINSTANCE h_Library = NULL;
 #else
 void *h_Library = NULL;
@@ -73,20 +73,21 @@ BOOL __stdcall DllMain(HINSTANCE, DWORD fdwReason, LPVOID)
 typedef struct game_modinfo_s {
    char   *name;      // name (the game dir)
    char   *linux_so;  // filename of GNU/Linux shared library
+   char   *mac_dylib; // filename of Mac OS X shared library
    char   *w32_dll;   // filename of Windows DLL
    int     mod_id;    // mod ID
    bool    official;  // whether this is a Valve's mod or not
 } game_modinfo_t;
 
 game_modinfo_t known_games[] = {
-   // name        linux_so           w32_dll        mod_id      official 
-   {"cstrike",  "cs_i386.so",       "mp.dll",      MOD_CSTRIKE,  true},  // Counter-Strike
-   {"cs13",     "cs_i386.so",       "mp.dll",      MOD_CSTRIKE,  false}, // Counter-Strike 1.3 on Steam
-   {"gearbox",  "opfor_i386.so",    "opfor.dll",   MOD_GEARBOX,  true},  // Opposing Force
-   {"valve",    "hl_i386.so",       "hl.dll",      MOD_VALVE,    true},  // Half-Life
-   {"ricochet", "ricochet_i386.so", "mp.dll",      MOD_RICOCHET, true},  // Ricochet
-   {"hldm",     "hl_i386.so",       "hl.dll",      MOD_VALVE,    false}, // Half-Life (for CS Retail)
-   {"redempt",  "hl_i386.so",       "redempt.dll", MOD_VALVE,    false}, // Maverick's Redemption (same as HLDM)
+   // name        linux_so          mac_dylib         w32_dll        mod_id      official 
+   {"cstrike",  "cs_i386.so",       "cs.dylib",       "mp.dll",      MOD_CSTRIKE,  true},  // Counter-Strike
+   {"cs13",     "cs_i386.so",       "cs.dylib",       "mp.dll",      MOD_CSTRIKE,  false}, // Counter-Strike 1.3 on Steam
+   {"gearbox",  "opfor_i386.so",    "opfor.dylib",    "opfor.dll",   MOD_GEARBOX,  true},  // Opposing Force
+   {"valve",    "hl_i386.so",       "hl.dylib",       "hl.dll",      MOD_VALVE,    true},  // Half-Life
+   {"ricochet", "ricochet_i386.so", "ricochet.dylib", "mp.dll",      MOD_RICOCHET, true},  // Ricochet
+   {"hldm",     "hl_i386.so",       "hl.dylib",       "hl.dll",      MOD_VALVE,    false}, // Half-Life (for CS Retail)
+   {"redempt",  "hl_i386.so",       "hl.dylib",       "redempt.dll", MOD_VALVE,    false}, // Maverick's Redemption (same as HLDM)
    {NULL, NULL, NULL, 0, false} // terminator
 };
 
@@ -134,7 +135,7 @@ void STDCALL GiveFnptrsToDll( enginefuncs_t* pengfuncsFromEngine, globalvars_t *
       if (g_fIsMetamod)
          return;
 
-#ifdef WINDOWSNT
+#if defined(WINDOWSNT)
       if (known->official) {
          // test if the game DLL file is NOT available outside of the Steam cache
          if (access(va("%s/dlls/%s", mod_name, known->w32_dll), 0) == -1) {
@@ -153,8 +154,19 @@ void STDCALL GiveFnptrsToDll( enginefuncs_t* pengfuncsFromEngine, globalvars_t *
       }
 
       h_Library = LoadLibrary(va("%s/dlls/%s", mod_name, known->w32_dll));
-#else
+#elif defined (__linux__)
       h_Library = dlopen(va("%s/dlls/%s", mod_name, known->linux_so), RTLD_NOW);
+      if (h_Library == NULL) {
+         char buf[256];
+         strcpy(buf, known->linux_so);
+         char *p = strstr(buf, "_i386.so");
+         if (p != NULL) {
+            strcpy(p, ".so");
+            h_Library = dlopen(va("%s/dlls/%s", mod_name, known->linux_so), RTLD_NOW);
+         }
+      }
+#elif defined (__APPLE__)
+      h_Library = dlopen(va("%s/dlls/%s", mod_name, known->mac_dylib), RTLD_NOW);
 #endif
    } else {
       g_General.TerminateOnError("Unsupported MOD!");

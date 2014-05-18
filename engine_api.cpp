@@ -839,7 +839,7 @@ void pfnCVarSetString(const char *szVarName, const char *szValue)
    (*g_engfuncs.pfnCVarSetString)(szVarName, szValue);
 }
 
-void pfnEngineFprintf(struct _iobuf *pfile, char *szFmt, ...)
+void pfnEngineFprintf(FILE *pfile, char *szFmt, ...)
 {
    va_list argptr;
    char string[256];

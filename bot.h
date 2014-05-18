@@ -174,6 +174,9 @@ public:
    CBaseBot                 *m_pBot; // pointer to the bot
 };
 
+class CBotNav;
+class CBotChat;
+
 // main bot class
 class CBaseBot : public CClient
 {

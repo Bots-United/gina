@@ -69,7 +69,7 @@ const char* pfnCVarGetString( const char *szVarName );
 void pfnCVarSetFloat( const char *szVarName, float flValue );
 void pfnCVarSetString( const char *szVarName, const char *szValue );
 void pfnAlertMessage( ALERT_TYPE atype, char *szFmt, ... );
-void pfnEngineFprintf( void *pfile, char *szFmt, ... );
+void pfnEngineFprintf( FILE *pfile, char *szFmt, ... );
 void* pfnPvAllocEntPrivateData( edict_t *pEdict, int32 cb );
 void* pfnPvEntPrivateData( edict_t *pEdict );
 void pfnFreeEntPrivateData( edict_t *pEdict );

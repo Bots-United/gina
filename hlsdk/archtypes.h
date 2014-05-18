@@ -15,7 +15,6 @@
 #ifndef ARCHTYPES_H
 #define ARCHTYPES_H
 
-#include <malloc.h>
 #include <string.h>
 
 // for when we care about how many bits we use
@@ -27,7 +26,7 @@ typedef signed long      int32;
 #ifdef _MSC_VER
 typedef signed __int64   int64;
 #endif
-#elif defined __linux__
+#else
 typedef long long	int64;
 #endif
 
@@ -38,7 +37,7 @@ typedef unsigned long      uint32;
 #ifdef _MSC_VER
 typedef unsigned __int64   uint64;
 #endif
-#elif defined __linux__
+#else
 typedef unsigned long long uint64;
 #endif
 
@@ -100,7 +99,7 @@ typedef unsigned int uint;
 #define __i386__	1
 #endif
 
-#elif __linux__
+#else
 typedef unsigned int DWORD;
 typedef unsigned short WORD;
 typedef void * HINSTANCE;
@@ -124,7 +123,7 @@ typedef void * HINSTANCE;
 	#endif
 #endif
 
-#if defined __i386__ && !defined __linux__
+#if defined __i386__ && !defined __linux__ && !defined __APPLE__
 	#define id386	1
 #else
 	#define id386	0
@@ -142,7 +141,7 @@ typedef void * HINSTANCE;
 // Can't use extern "C" when DLL exporting a global
 #define  DLL_GLOBAL_EXPORT   extern __declspec( dllexport ) 
 #define  DLL_GLOBAL_IMPORT   extern __declspec( dllimport )
-#elif defined __linux__
+#else
 
 // Used for dll exporting and importing
 #define  DLL_EXPORT   extern "C" 
@@ -156,8 +155,6 @@ typedef void * HINSTANCE;
 #define  DLL_GLOBAL_EXPORT   extern
 #define  DLL_GLOBAL_IMPORT   extern 
 
-#else
-#error "Unsupported Platform."
 #endif
 
 // Used for standard calling conventions
@@ -202,7 +199,7 @@ typedef void * HINSTANCE;
 // Alloca defined for this platform
 #define  stackalloc( _size ) _alloca( _size )
 #define  stackfree( _p )   0
-#elif __linux__
+#else
 // Alloca defined for this platform
 #define  stackalloc( _size ) alloca( _size )
 #define  stackfree( _p )   0

@@ -1,12 +1,13 @@
-#CPP=g++
-#CC=gcc
-#DLLWRAP=dllwrap
-CPP=i586-mingw32msvc-g++
-CC=i586-mingw32msvc-gcc
-DLLWRAP=i586-mingw32msvc-dllwrap
+CPP=g++
+CC=gcc
+DLLWRAP=dllwrap
+#CPP=i586-mingw32msvc-g++
+#CC=i586-mingw32msvc-gcc
+#DLLWRAP=i586-mingw32msvc-dllwrap
 
 #OS=linux
-OS=windows
+#OS=windows
+OS=mac
 
 OBJ = server.o \
 	bot_globals.o \
@@ -49,20 +50,20 @@ OBJ = server.o \
 	valve/server_valve.o
 
 GAMEDEF = -DVALVE_DLL=1
-CCOPT = -march=i586 -O2 -DNDEBUG=1 -s
+CCOPT = -march=i586 -O2 -DNDEBUG=1
 CCDEBUG = -ggdb3 -D_DEBUG=1
 
 INCLUDE = -I./hlsdk -I./metamod
 
-CFLAGS = $(GAMEDEF) $(CCOPT)
-#CFLAGS = $(GAMEDEF) $(CCDEBUG)
+#CFLAGS = $(GAMEDEF) $(CCOPT)
+CFLAGS = $(GAMEDEF) $(CCDEBUG)
 
 ifeq "$(OS)" "linux"
 
 BASEFLAGS=-Dstricmp=strcasecmp -Dstrcmpi=strcasecmp
 CPPFLAGS=${BASEFLAGS} ${CFLAGS} ${INCLUDE}
 
-bot_i586.so:	${OBJ}
+bot.so:	${OBJ}
 	${CPP}  ${CFLAGS} -fPIC -shared -static -o $@ ${OBJ} -ldl -lm
 
 clean:
@@ -71,7 +72,23 @@ clean:
 	-rm -f valve/*.o
 	-rm -f gearbox/*.o
 	-rm -f ricochet/*.o
-	-rm -f bot_i586.so
+	-rm -f bot.so
+
+else ifeq "$(OS)" "mac"
+
+BASEFLAGS=-Dstricmp=strcasecmp -Dstrcmpi=strcasecmp
+CPPFLAGS=${BASEFLAGS} ${CFLAGS} ${INCLUDE} -m32
+
+bot.dylib:	${OBJ}
+	${CPP} -m32 -fPIC -shared -o $@ ${OBJ} -ldl -lm
+
+clean:
+	-rm -f *.o
+	-rm -f cstrike/*.o
+	-rm -f valve/*.o
+	-rm -f gearbox/*.o
+	-rm -f ricochet/*.o
+	-rm -f bot.dylib
 
 else
 

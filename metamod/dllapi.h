@@ -37,7 +37,7 @@
 #undef DLLEXPORT
 #ifdef _WIN32
 	#define DLLEXPORT	__declspec(dllexport)
-#elif defined(linux)
+#else
 	#define DLLEXPORT	/* */
 	#define WINAPI		/* */
 #endif /* linux */
